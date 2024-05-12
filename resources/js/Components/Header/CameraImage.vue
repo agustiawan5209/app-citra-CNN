@@ -4,10 +4,15 @@ import Layanan from '@/Components/Header/Layanan.vue';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { WebCamUI } from 'vue-camera-lib';
+import { ref } from 'vue';
 
+const image = ref(null)
+const BlobImage = ref(null)
 function photoTaken(data) {
     console.log('image blob: ', data.blob)
     console.log('image data url', data.image_data_url)
+    image.value = data.image_data_url;
+    BlobImage.value = data.blob
 };
 </script>
 
@@ -18,6 +23,10 @@ function photoTaken(data) {
         <p class="text-gray-600">Klasifikasi Jenis Tanaman Obat Kencur, Jahe, Lengkuas, Temulawak, Kunyit</p>
         <div class="mt-12">
             <WebCamUI :fullscreenState="false" @photoTaken="photoTaken" />
+        </div>
+
+        <div class="my-12" v-if="image != null && BlobImage != null">
+            <img :src="image" />
         </div>
     </main>
 </template>
