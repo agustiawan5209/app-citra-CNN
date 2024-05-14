@@ -18,17 +18,17 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'relative flex items-center space-x-4 rounded-xl bg-gradient-to-r from-primary to-green-400 px-4 py-3 text-white'
-        : 'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600'
+        ? 'relative flex text-lg trackingg-widest items-center space-x-4 rounded-xl bg-gradient-to-r from-primary to-green-400 px-4 py-3 text-white'
+        : 'group flex text-lg trackingg-widest items-center space-x-4 rounded-md px-4 py-3 text-white'
 );
 const classesIcon = computed(() =>
-    props.active ? 'text-green-200' : 'text-gray-500 group-hover:text-green-500'
+    props.active ? 'text-white group-hover:text-secondary' : 'text-white group-hover:text-green-500'
 );
 </script>
 
 <template>
-    <Link :href="href" :class="classes">
-        <font-awesome-icon :icon="icon" :class="classesIcon"/>
+    <Link :href="href" :class="classes" class="group">
+        <font-awesome-icon :icon="icon" :class="classesIcon" class="transition-all trac"/>
         <slot />
     </Link>
 </template>
