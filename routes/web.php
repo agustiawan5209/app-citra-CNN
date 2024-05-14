@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataLatihController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::group(['prefix'=> 'data-latih', 'as'=> 'DataLatih.'], function(){
+        Route::controller(DataLatihController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah-data-latih', 'create')->name('create');
+            Route::get('/detail-data-latih', 'show')->name('show');
+            Route::post('/store-data-latih', 'store')->name('store');
+            Route::delete('/destroy-data-latih', 'destroy')->name('destroy');
+        });
+    });
 });
 
 require __DIR__.'/auth.php';

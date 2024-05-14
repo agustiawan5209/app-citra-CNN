@@ -47,6 +47,12 @@ function ArrayToString() {
                     <span class="-mr-1 font-medium">Dashboard</span>
                 </NavLink>
             </li>
+            <li v-if="roleToCheck('Admin')">
+                <NavLink :href="route('DataLatih.index')" :active="route().current('DataLatih.index')" :icon="['fas', 'gear']">
+
+                    <span class="-mr-1 font-medium">Data Latih</span>
+                </NavLink>
+            </li>
 
         </ul>
     </div>

@@ -18,7 +18,7 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'relative flex text-lg trackingg-widest items-center space-x-4 rounded-xl bg-gradient-to-r from-primary to-green-400 px-4 py-3 text-white'
+        ? 'relative flex text-lg trackingg-widest items-center space-x-4 rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white'
         : 'group flex text-lg trackingg-widest items-center space-x-4 rounded-md px-4 py-3 text-white'
 );
 const classesIcon = computed(() =>
