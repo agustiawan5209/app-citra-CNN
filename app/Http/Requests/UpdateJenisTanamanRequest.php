@@ -11,7 +11,7 @@ class UpdateJenisTanamanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateJenisTanamanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'slug'=> 'required|exists:jenis_tanamen,id',
+            'nama'=> 'required|sometimes|unique:jenis_tanamen,nama',
         ];
     }
 }

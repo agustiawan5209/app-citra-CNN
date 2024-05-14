@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\JenisTanaman;
 use App\Http\Requests\StoreJenisTanamanRequest;
 use App\Http\Requests\UpdateJenisTanamanRequest;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class JenisTanamanController extends Controller
 {
@@ -13,7 +15,10 @@ class JenisTanamanController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Tanaman/Index',[
+            'tanaman'=> JenisTanaman::filter(Request::only('search', 'order'))->paginate(10),
+            'search'=> Request::input('search'),
+        ]);
     }
 
     /**
@@ -29,7 +34,8 @@ class JenisTanamanController extends Controller
      */
     public function store(StoreJenisTanamanRequest $request)
     {
-        //
+        $jenisTanaman = JenisTanaman::create($request->all());
+        return redirect()->route('Tanaman.index')->with('message', 'Data Jenis Tanaman Obat Berhasil Di Tambah');
     }
 
     /**
@@ -53,7 +59,8 @@ class JenisTanamanController extends Controller
      */
     public function update(UpdateJenisTanamanRequest $request, JenisTanaman $jenisTanaman)
     {
-        //
+        $jenisTanaman = JenisTanaman::find(Request::input('slug'))->update($request->all());
+        return redirect()->route('Tanaman.index')->with('message', 'Data Jenis Tanaman Obat Berhasil Di Tambah');
     }
 
     /**
