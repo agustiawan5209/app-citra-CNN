@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -42,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+     //  FIlter Data User
+     public function scopeFilter($query, $search)
+     {
+         $query->when($search ?? null, function ($query) use ($search) {
+             $query->where('name', 'like', '%' . $search . '%')
+                 ->orWhere('username', 'like', '%' . $search . '%');
+         });
+     }
 }

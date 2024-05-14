@@ -3,7 +3,17 @@ import Hero from '@/Components/Header/Hero.vue';
 import Layanan from '@/Components/Header/Layanan.vue';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+const Image = ref(null)
 
+const PhotoTake = (Event) => {
+    const file = Event.target.files[0]
+    const reader = new FileReader()
+    reader.onload = (e) => {
+        Image.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+}
 </script>
 
 <template>
@@ -14,15 +24,21 @@ import { Head, Link } from '@inertiajs/vue3';
         <div class="mt-12">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="mb-6">
-                    <label for="file" class="block mb-2 text-sm text-gray-600">Pilih file atau seret file ke sini</label>
-                    <input type="file" id="file" name="file"  class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <label for="file" class="block mb-2 text-sm text-gray-600">Pilih file atau seret file ke
+                        sini</label>
+                    <input type="file" id="file" name="file" @input="PhotoTake($event)"
+                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
-                <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Mulai Klasifikasi</button>
+
+                <div class="my-12 container mx-auto flex justify-center" v-if="Image != null">
+                    <img :src="Image" class="max-w-lg" />
+                </div>
+                <button type="submit"
+                    class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Mulai
+                    Klasifikasi</button>
             </form>
         </div>
     </main>
 </template>
 
-<style>
-
-</style>
+<style></style>

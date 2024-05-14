@@ -10,7 +10,7 @@ import { Head, Link } from '@inertiajs/vue3';
             <div class="container mx-auto flex flex-col md:flex-row items-center my-4 md:my-10">
                 <div class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
                     <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">Citra</h1>
-                    <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Citra Conventional Neural
+                    <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Conventional Neural
                         Network
                     </h2>
                     <p class="text-sm md:text-base text-gray-50 mb-4">
