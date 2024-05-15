@@ -27,6 +27,9 @@ class DataLatihController extends Controller
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
 
+        $python = new PythonController();
+        // dd($python->runPythonScript());
+        dd($python->runPythonScripts());
         return Inertia::render('DataLatih/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id'])),
@@ -51,6 +54,7 @@ class DataLatihController extends Controller
 
     public function store(StoreDataLatihRequest $request)
     {
+
 
         return redirect()->route('DataLatih.index')->with('message', 'Berhasil Di Tambah');
     }
