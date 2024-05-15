@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StoreDataLatihRequest;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -27,9 +28,7 @@ class DataLatihController extends Controller
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
 
-        $python = new PythonController();
-        // dd($python->runPythonScript());
-        dd($python->runPythonScripts());
+
         return Inertia::render('DataLatih/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id'])),
@@ -55,7 +54,17 @@ class DataLatihController extends Controller
     public function store(StoreDataLatihRequest $request)
     {
 
+        $file = $request->file('gambar');
+        $namaFile = $file->getClientOriginalName();
+        $extFile = $file->getClientOriginalExtension();
+        $filename = md5($namaFile) .'.'. $extFile;
 
+        $path = Storage::disk('public')->put('training/'. $request->kelas, $file);
+        $image_path = public_path('storage/') . $path;
+
+        $python = new PythonController();
+        $output = $python->runPythonScripts($image_path);
+        dd($output);
         return redirect()->route('DataLatih.index')->with('message', 'Berhasil Di Tambah');
     }
 

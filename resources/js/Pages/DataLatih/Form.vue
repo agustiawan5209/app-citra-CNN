@@ -40,8 +40,6 @@ const PhotoTake = (Event) => {
         Image.value = e.target.result
     }
     reader.readAsDataURL(file)
-    console.log(file)
-    console.log(Image)
 }
 
 </script>
