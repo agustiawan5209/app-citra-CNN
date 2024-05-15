@@ -22,7 +22,6 @@ class StoreKriteriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slug'=> 'required|exists:kriterias,id',
             'nama'=> 'required|sometimes|unique:kriterias,nama',
         ];
     }

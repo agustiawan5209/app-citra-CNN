@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kriterias', function (Blueprint $table) {
             $table->id();
+            $table->string('nama',50)->unique();
             $table->timestamps();
         });
     }

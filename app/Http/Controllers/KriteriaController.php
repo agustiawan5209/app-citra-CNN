@@ -16,7 +16,7 @@ class KriteriaController extends Controller
     public function index()
     {
         return Inertia::render('Kriteria/Index',[
-            'tanaman'=> Kriteria::filter(Request::only('search', 'order'))->paginate(10),
+            'kriteria'=> Kriteria::filter(Request::only('search', 'order'))->paginate(10),
             'search'=> Request::input('search'),
         ]);
     }

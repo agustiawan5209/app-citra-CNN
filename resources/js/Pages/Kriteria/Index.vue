@@ -11,7 +11,7 @@ import TextInput from '@/Components/TextInput.vue';
 const swal = inject('$swal')
 
 const props = defineProps({
-    tanaman: {
+    kriteria: {
         type: Object,
         default: () => ({})
     },
@@ -32,7 +32,7 @@ function showModal() {
 }
 
 function submit() {
-    Form.post(route('Tanaman.store'), {
+    Form.post(route('Kriteria.store'), {
         onError: err => console.log(err),
         onSuccess: () => {
             if (page.props.message !== null) {
@@ -66,7 +66,7 @@ function showDeleteModal(item) {
 }
 
 function deleteItem() {
-    DeleteForm.delete(route('Tanaman.destroy'), {
+    DeleteForm.delete(route('Kriteria.destroy'), {
         preserveState: true,
         preserveScroll: true,
         onFinish: () => {
@@ -100,7 +100,7 @@ function showEditModal(item) {
 }
 
 function submitEdit() {
-    EditForm.put(route('Tanaman.update'), {
+    EditForm.put(route('Kriteria.update'), {
         preserveState: true,
         preserveScroll: true,
         onFinish: () => {
@@ -127,9 +127,9 @@ function closeEditModal(){
 <template>
     <AuthenticatedLayout>
 
-        <Head title="Tanaman Obat" />
+        <Head title="Kriteria" />
         <template #header>
-            <h2 class="font-semibold leading-tight">Jenis Tanaman Obat</h2>
+            <h2 class="font-semibold leading-tight">Kriteria</h2>
 
         </template>
         <!-- Modal tambah -->
@@ -138,7 +138,7 @@ function closeEditModal(){
 
                 <form @submit.prevent="submit">
                     <div>
-                        <InputLabel for="nama" value="Nama Jenis Tanaman Obat" />
+                        <InputLabel for="nama" value="Nama Kriteria" />
 
                         <TextInput id="nama" type="text" class="mt-1 block w-full" v-model="Form.nama" required
                             autofocus autocomplete="nama" />
@@ -163,7 +163,7 @@ function closeEditModal(){
 
                 <form @submit.prevent="submitEdit">
                     <div>
-                        <InputLabel for="nama" value="Nama Jenis Tanaman Obat" />
+                        <InputLabel for="nama" value="Nama Kriteria" />
 
                         <TextInput id="nama" type="text" class="mt-1 block w-full" v-model="EditForm.nama" required
                             autofocus autocomplete="nama" />
@@ -233,18 +233,18 @@ function closeEditModal(){
                                     </th>
                                     <th scope="col"
                                         class="px-2 py-1 md:px-6 md:py-3 text-nowrap text-start text-xs font-medium text-white uppercase">
-                                        Jenis Tanaman Obat</th>
+                                        Nama Kriteria</th>
                                     <th scope="col"
                                         class="px-2 py-1 md:px-6 md:py-3 text-nowrap text-start text-xs font-medium text-white uppercase">
                                         Aksi
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody v-if="tanaman.data.length > 0">
-                                <tr v-for="(item, index) in tanaman.data" :key="item.id" :index="index"
+                            <tbody v-if="kriteria.data.length > 0">
+                                <tr v-for="(item, index) in kriteria.data" :key="item.id" :index="index"
                                     class="border border-secondary hover:bg-gray-200">
                                     <td class="w-4 px-4 py-3 text-center text-gray-700">
-                                        {{ (tanaman.current_page - 1) * tanaman.per_page + index + 1 }}
+                                        {{ (kriteria.current_page - 1) * kriteria.per_page + index + 1 }}
 
                                     </td>
                                     <td
@@ -278,7 +278,7 @@ function closeEditModal(){
                     <nav class="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
                         aria-label="Table navigation">
                         <div class="flex flex-wrap">
-                            <template v-for="(link, key) in tanaman.links">
+                            <template v-for="(link, key) in kriteria.links">
                                 <div v-if="link.url === null" :key="key"
                                     class="mb-1 mr-1 px-4 py-3  text-gray-400 text-sm leading-4 border rounded"
                                     v-html="link.label" />
