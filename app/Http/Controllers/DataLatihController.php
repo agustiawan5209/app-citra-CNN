@@ -51,13 +51,7 @@ class DataLatihController extends Controller
 
     public function store(StoreDataLatihRequest $request)
     {
-        // $data = $request->all();
-        // $data_latih = DataLatih::create([
-        //     'kelas' => $data['kelas'],
-        // ]);
 
-        $python = new PythonController();
-        dd($python->runPythonScript());
         return redirect()->route('DataLatih.index')->with('message', 'Berhasil Di Tambah');
     }
 
