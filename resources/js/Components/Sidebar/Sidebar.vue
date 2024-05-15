@@ -48,6 +48,12 @@ function ArrayToString() {
                 </NavLink>
             </li>
             <li v-if="roleToCheck('Admin')">
+                <NavLink :href="route('Kriteria.index')" :active="route().current('Kriteria.index')" :icon="['fas', 'leaf']">
+
+                    <span class="-mr-1 font-medium">Kriteria Tanaman Obat</span>
+                </NavLink>
+            </li>
+            <li v-if="roleToCheck('Admin')">
                 <NavLink :href="route('Tanaman.index')" :active="route().current('Tanaman.index')" :icon="['fas', 'leaf']">
 
                     <span class="-mr-1 font-medium">Tanaman Obat</span>

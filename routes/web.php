@@ -3,6 +3,7 @@
 use App\Http\Controllers\DataLatihController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisTanamanController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,21 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::group(['prefix'=> 'kriteria', 'as'=> 'Kriteria.'], function(){
+        Route::controller(KriteriaController::class)->group(function(){
+            Route::get('/kriteria', 'index')->name('index');
+            Route::get('/tambah-kriteria', 'create')->name('create');
+            Route::get('/detail-kriteria', 'show')->name('show');
+            Route::get('/ubah-kriteria', 'edit')->name('edit');
+
+
+            Route::put('/update-kriteria', 'update')->name('update');
+            Route::post('/store-kriteria', 'store')->name('store');
+            Route::delete('/destroy-kriteria', 'destroy')->name('destroy');
+        });
+    });
+
+    // Tanaman Obat
     Route::group(['prefix'=> 'tanaman-obat', 'as'=> 'Tanaman.'], function(){
         Route::controller(JenisTanamanController::class)->group(function(){
             Route::get('/tanaman-obat', 'index')->name('index');
