@@ -68,6 +68,7 @@ class JenisTanamanController extends Controller
      */
     public function destroy(JenisTanaman $jenisTanaman)
     {
-        //
+        $jenisTanaman = JenisTanaman::find(Request::input('slug'))->delete();
+        return redirect()->route('Tanaman.index')->with('message', 'Data Jenis Jenis Tanaman Obat Berhasil Di Hapus');
     }
 }
