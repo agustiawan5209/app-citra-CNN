@@ -40,11 +40,11 @@ const crud = ref({
 
 <template>
 
-    <Head title="Dashboard" />
+    <Head title="Data Latih" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Data Orang Tua</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Data Latih</h2>
         </template>
 
         <div class="py-4 relative box-content">

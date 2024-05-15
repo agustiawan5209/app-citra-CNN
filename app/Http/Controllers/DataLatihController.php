@@ -8,6 +8,7 @@ use App\Models\Aturan;
 use App\Models\Attribut;
 use App\Models\Kriteria;
 use App\Models\DataLatih;
+use App\Models\JenisTanaman;
 use App\Models\KelasDataLatih;
 use App\Models\DetailDataLatih;
 use App\Models\HimpunanKriteria;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StoreDataLatihRequest;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class DataLatihController extends Controller
 {
@@ -42,16 +45,19 @@ class DataLatihController extends Controller
     {
         return Inertia::render('DataLatih/Form', [
             'search' => Request::input('search'),
+            'kelas' => JenisTanaman::all(),
         ]);
     }
 
     public function store(StoreDataLatihRequest $request)
     {
-        $data = $request->all();
-        $data_latih = DataLatih::create([
-            'kelas' => $data['kelas'],
-        ]);
+        // $data = $request->all();
+        // $data_latih = DataLatih::create([
+        //     'kelas' => $data['kelas'],
+        // ]);
 
+        $python = new PythonController();
+        dd($python->runPythonScript());
         return redirect()->route('DataLatih.index')->with('message', 'Berhasil Di Tambah');
     }
 
